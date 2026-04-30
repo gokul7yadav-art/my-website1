@@ -6,7 +6,6 @@
 
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -15,7 +14,7 @@
       overflow-x: hidden;
     }
 
-    /* animated particles */
+    /* particle field */
     body::before {
       content: "";
       position: fixed;
@@ -26,7 +25,6 @@
       animation: move 20s linear infinite;
       z-index: -1;
     }
-
     @keyframes move {
       0% { transform: translate(0,0); }
       100% { transform: translate(-200px,-200px); }
@@ -79,7 +77,14 @@
       background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
+      transition: 0.4s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card:hover {
@@ -105,43 +110,38 @@
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <h1>STK×Ghost 🔥</h1>
   <div class="rank">SS Rank • Tactical Player</div>
   <button class="btn" onclick="enter()">Enter Arena</button>
 </div>
 
-<!-- CONTENT -->
 <div id="content" class="hidden">
 
-  <!-- CORE STATS -->
   <div class="section">
     <h2>Core Stats</h2>
     <div class="grid">
-      <div class="card"><div class="big">6.06</div>F/D Ratio</div>
-      <div class="card"><div class="big">146</div>Matches</div>
-      <div class="card"><div class="big">25</div>Wins</div>
-      <div class="card"><div class="big">885</div>Eliminations</div>
+      <div class="card"><div class="big counter" data-target="6.06">0</div>F/D Ratio</div>
+      <div class="card"><div class="big counter" data-target="146">0</div>Matches</div>
+      <div class="card"><div class="big counter" data-target="25">0</div>Wins</div>
+      <div class="card"><div class="big counter" data-target="885">0</div>Eliminations</div>
     </div>
   </div>
 
-  <!-- PERFORMANCE -->
   <div class="section">
     <h2>Performance</h2>
     <div class="grid">
-      <div class="card"><div class="big">65.1%</div>Top 10 Rate</div>
-      <div class="card"><div class="big">17.1%</div>Win Rate</div>
-      <div class="card"><div class="big">19%</div>Headshot Rate</div>
-      <div class="card"><div class="big">1058</div>Avg Damage</div>
+      <div class="card"><div class="big counter" data-target="65.1">0</div>% Top 10</div>
+      <div class="card"><div class="big counter" data-target="17.1">0</div>% Win Rate</div>
+      <div class="card"><div class="big counter" data-target="19">0</div>% Headshot</div>
+      <div class="card"><div class="big counter" data-target="1058">0</div>Avg Damage</div>
     </div>
   </div>
 
-  <!-- LOADOUT -->
   <div class="section">
     <h2>Loadout</h2>
     <div class="grid">
-      <div class="card full"><div class="big">M416 🔫</div>Primary Weapon</div>
+      <div class="card full"><div class="big">M416 🔫</div>Primary</div>
       <div class="card full"><div class="big">Tactical ⚡</div>Playstyle</div>
     </div>
   </div>
@@ -151,7 +151,43 @@
 <script>
 function enter() {
   document.getElementById("content").style.display = "block";
+  animateCounters();
+  revealOnScroll();
   window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+}
+
+/* COUNTER ANIMATION */
+function animateCounters() {
+  document.querySelectorAll('.counter').forEach(counter => {
+    const target = parseFloat(counter.getAttribute('data-target'));
+    let count = 0;
+    const increment = target / 60;
+
+    const update = () => {
+      count += increment;
+      if (count < target) {
+        counter.innerText = (target % 1 !== 0) ? count.toFixed(2) : Math.floor(count);
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    update();
+  });
+}
+
+/* SCROLL REVEAL */
+function revealOnScroll() {
+  const cards = document.querySelectorAll('.card');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  cards.forEach(card => observer.observe(card));
 }
 </script>
 
