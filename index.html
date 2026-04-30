@@ -1,12 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
-</head>
-<body style="background:black;color:white;text-align:center;">
+  <title>STK×Ghost</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1>STK×Ghost 🔥</h1>
-<p>My first website</p>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: linear-gradient(135deg, #000000, #0f172a);
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00f7ff; }
+      to { text-shadow: 0 0 25px #00f7ff; }
+    }
+
+    .card {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #00f7ff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>STK×Ghost 🔥</h1>
+
+  <div class="card">
+    <h2>Gaming Profile</h2>
+    <p>PUBG Player | Competitive Mindset</p>
+    <button onclick="alert('Welcome to my site!')">Enter</button>
+  </div>
+</div>
 
 </body>
 </html>
