@@ -3,150 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stats - STK×Ghost</title>
+<title>Stats</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  font-family: Arial, sans-serif;
-  color: white;
-  min-height: 100vh;
-  padding: 20px;
-
-  background: url('bg.jpg.jpg') no-repeat center center/cover;
+  font-family: Arial;
+  color:white;
+  padding:20px;
+  background:url('bg.jpg.jpg') center/cover no-repeat;
+  animation: fadeIn 0.6s ease;
 }
 
-/* Dark overlay */
 body::before {
-  content: "";
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  z-index:-1;
+}
+
+.nav {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: -1;
+  top: 0;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  background: rgba(0,0,0,0.6);
 }
 
-/* Back button */
-.back {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  text-decoration: none;
+.nav a {
+  margin: 0 15px;
   color: #00f5d4;
-  font-weight: bold;
+  text-decoration:none;
 }
 
-/* Title */
 .title {
-  text-align: center;
-  font-size: 32px;
-  margin-top: 40px;
-  color: #00f5d4;
-  text-shadow: 0 0 15px #00f5d4;
+  text-align:center;
+  margin-top:60px;
+  font-size:32px;
+  color:#00f5d4;
 }
 
-/* Section */
-.section {
-  margin-top: 40px;
-  text-align: center;
-}
-
-.section h2 {
-  margin-bottom: 20px;
-}
-
-/* Grid */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  max-width: 400px;
-  margin: auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  max-width:400px;
+  margin:30px auto;
 }
 
-/* Card */
 .card {
   background: rgba(255,255,255,0.08);
-  border-radius: 15px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  transition:0.3s;
+  opacity:0;
+  transform:translateY(30px);
+}
+
+.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00f5d4;
 }
 
 .value {
-  font-size: 24px;
-  color: #00f5d4;
-  font-weight: bold;
+  font-size:24px;
+  color:#00f5d4;
 }
 
-.label {
-  font-size: 14px;
-  margin-top: 5px;
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); }
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html" class="back">⬅ Back</a>
+<nav class="nav">
+  <a href="index.html">Home</a>
+  <a href="stats.html">Stats</a>
+  <a href="loadout.html">Loadout</a>
+</nav>
 
-<h1 class="title">Your Stats</h1>
+<h1 class="title">Stats</h1>
 
-<!-- Core Stats -->
-<div class="section">
-  <h2>Core Stats</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="value">6.06</div>
-      <div class="label">F/D Ratio</div>
-    </div>
-
-    <div class="card">
-      <div class="value">146</div>
-      <div class="label">Matches</div>
-    </div>
-
-    <div class="card">
-      <div class="value">25</div>
-      <div class="label">Wins</div>
-    </div>
-
-    <div class="card">
-      <div class="value">885</div>
-      <div class="label">Eliminations</div>
-    </div>
-  </div>
+<div class="grid">
+  <div class="card"><div class="value">6.06</div>F/D</div>
+  <div class="card"><div class="value">146</div>Matches</div>
+  <div class="card"><div class="value">25</div>Wins</div>
+  <div class="card"><div class="value">885</div>Kills</div>
 </div>
 
-<!-- Performance -->
-<div class="section">
-  <h2>Performance</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="value">65.1%</div>
-      <div class="label">Top 10 Rate</div>
-    </div>
-
-    <div class="card">
-      <div class="value">17.1%</div>
-      <div class="label">Win Rate</div>
-    </div>
-
-    <div class="card">
-      <div class="value">19%</div>
-      <div class="label">Headshot</div>
-    </div>
-
-    <div class="card">
-      <div class="value">1058</div>
-      <div class="label">Avg Damage</div>
-    </div>
-  </div>
-</div>
+<script>
+const cards = document.querySelectorAll('.card');
+const obs = new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+  if(e.isIntersecting){
+   e.target.style.opacity=1;
+   e.target.style.transform="translateY(0)";
+  }
+ });
+});
+cards.forEach(c=>obs.observe(c));
+</script>
 
 </body>
 </html>
