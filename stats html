@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      color: white;
+      background: black;
+    }
+
+    .bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('bg.jpg.jpg') center/cover no-repeat;
+      filter: blur(12px) brightness(0.5);
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 20px;
+    }
+
+    .card {
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .big {
+      font-size: 22px;
+      color: #00f7ff;
+    }
+
+    .nav {
+      text-align: center;
+      margin: 20px;
+    }
+
+    a {
+      color: #00f7ff;
+      text-decoration: none;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<h1>Core Stats</h1>
+
+<div class="grid">
+  <div class="card"><div class="big">6.06</div>F/D Ratio</div>
+  <div class="card"><div class="big">146</div>Matches</div>
+  <div class="card"><div class="big">25</div>Wins</div>
+  <div class="card"><div class="big">885</div>Eliminations</div>
+</div>
+
+<div class="nav">
+  <a href="index.html">Home</a>
+  <a href="loadout.html">Loadout</a>
+</div>
+
+</body>
+</html>
