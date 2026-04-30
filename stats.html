@@ -1,82 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Stats</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      color: white;
-      background: black;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stats - STK×Ghost</title>
 
-    .bg {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: url('bg.jpg.jpg') center/cover no-repeat;
-      filter: blur(12px) brightness(0.5);
-      z-index: -1;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    h1 {
-      text-align: center;
-      padding: 20px;
-    }
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  min-height: 100vh;
+  padding: 20px;
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      padding: 20px;
-    }
+  background: url('bg.jpg.jpg') no-repeat center center/cover;
+}
 
-    .card {
-      padding: 15px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      text-align: center;
-    }
+/* Dark overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: -1;
+}
 
-    .big {
-      font-size: 22px;
-      color: #00f7ff;
-    }
+/* Back button */
+.back {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  color: #00f5d4;
+  font-weight: bold;
+}
 
-    .nav {
-      text-align: center;
-      margin: 20px;
-    }
+/* Title */
+.title {
+  text-align: center;
+  font-size: 32px;
+  margin-top: 40px;
+  color: #00f5d4;
+  text-shadow: 0 0 15px #00f5d4;
+}
 
-    a {
-      color: #00f7ff;
-      text-decoration: none;
-      margin: 10px;
-    }
-  </style>
+/* Section */
+.section {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Card */
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.value {
+  font-size: 24px;
+  color: #00f5d4;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 14px;
+  margin-top: 5px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+<a href="index.html" class="back">⬅ Back</a>
 
-<h1>Core Stats</h1>
+<h1 class="title">Your Stats</h1>
 
-<div class="grid">
-  <div class="card"><div class="big">6.06</div>F/D Ratio</div>
-  <div class="card"><div class="big">146</div>Matches</div>
-  <div class="card"><div class="big">25</div>Wins</div>
-  <div class="card"><div class="big">885</div>Eliminations</div>
+<!-- Core Stats -->
+<div class="section">
+  <h2>Core Stats</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="value">6.06</div>
+      <div class="label">F/D Ratio</div>
+    </div>
+
+    <div class="card">
+      <div class="value">146</div>
+      <div class="label">Matches</div>
+    </div>
+
+    <div class="card">
+      <div class="value">25</div>
+      <div class="label">Wins</div>
+    </div>
+
+    <div class="card">
+      <div class="value">885</div>
+      <div class="label">Eliminations</div>
+    </div>
+  </div>
 </div>
 
-<div class="nav">
-  <a href="index.html">Home</a>
-  <a href="loadout.html">Loadout</a>
+<!-- Performance -->
+<div class="section">
+  <h2>Performance</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="value">65.1%</div>
+      <div class="label">Top 10 Rate</div>
+    </div>
+
+    <div class="card">
+      <div class="value">17.1%</div>
+      <div class="label">Win Rate</div>
+    </div>
+
+    <div class="card">
+      <div class="value">19%</div>
+      <div class="label">Headshot</div>
+    </div>
+
+    <div class="card">
+      <div class="value">1058</div>
+      <div class="label">Avg Damage</div>
+    </div>
+  </div>
 </div>
-<div style="text-align:center; margin:20px;">
-  <a href="index.html" style="color:#00f7ff;">← Back to Home</a>
-</div>
+
 </body>
 </html>
