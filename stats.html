@@ -6,14 +6,14 @@
 <title>Stats</title>
 
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
+* {margin:0; padding:0; box-sizing:border-box;}
 
 body {
-  font-family: Arial;
+  font-family:Arial;
   color:white;
   padding:20px;
   background:url('bg.jpg.jpg') center/cover no-repeat;
-  animation: fadeIn 0.6s ease;
+  animation:fadeIn 0.6s ease;
 }
 
 body::before {
@@ -25,19 +25,35 @@ body::before {
 }
 
 .nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 12px 0;
-  text-align: center;
-  background: rgba(0,0,0,0.6);
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:12px 0;
+  text-align:center;
+  background:rgba(0,0,0,0.6);
 }
 
 .nav a {
-  margin: 0 15px;
-  color: #00f5d4;
+  position:relative;
+  margin:0 15px;
+  color:#00f5d4;
   text-decoration:none;
 }
+
+.nav a.active { color:white; }
+
+.nav a::after {
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  left:0;
+  bottom:-4px;
+  background:#00f5d4;
+  transition:0.3s;
+}
+
+.nav a:hover::after { width:100%; }
 
 .title {
   text-align:center;
@@ -55,7 +71,7 @@ body::before {
 }
 
 .card {
-  background: rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.08);
   padding:20px;
   border-radius:15px;
   text-align:center;
@@ -75,8 +91,8 @@ body::before {
 }
 
 @keyframes fadeIn {
-  from { opacity:0; transform:translateY(10px); }
-  to { opacity:1; transform:translateY(0); }
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
@@ -85,17 +101,19 @@ body::before {
 
 <nav class="nav">
   <a href="index.html">Home</a>
-  <a href="stats.html">Stats</a>
+  <a href="stats.html" class="active">Stats</a>
   <a href="loadout.html">Loadout</a>
 </nav>
 
 <h1 class="title">Stats</h1>
 
 <div class="grid">
-  <div class="card"><div class="value">6.06</div>F/D</div>
+  <div class="card"><div class="value">6.06</div>F/D Ratio</div>
   <div class="card"><div class="value">146</div>Matches</div>
   <div class="card"><div class="value">25</div>Wins</div>
-  <div class="card"><div class="value">885</div>Kills</div>
+  <div class="card"><div class="value">885</div>Eliminations</div>
+  <div class="card"><div class="value">65.1%</div>Top 10</div>
+  <div class="card"><div class="value">17.1%</div>Win Rate</div>
 </div>
 
 <script>
