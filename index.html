@@ -1,221 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>STK×Ghost</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STK×Ghost</title>
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      background: black;
-      overflow-x: hidden;
-    }
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    /* PARTICLE BACKGROUND */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, #00f7ff22 1px, transparent 1px);
-      background-size: 40px 40px;
-      animation: move 20s linear infinite;
-      z-index: -3;
-    }
+  /* Background image */
+  background: url('bg.jpg.jpg') no-repeat center center/cover;
+}
 
-    @keyframes move {
-      0% { transform: translate(0,0); }
-      100% { transform: translate(-200px,-200px); }
-    }
+/* Dark overlay */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 80px 20px 40px;
-    }
+/* Main container */
+.container {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
 
-    h1 {
-      font-size: 42px;
-      color: #00f7ff;
-      text-shadow: 0 0 30px #00f7ff;
-    }
+/* Title */
+.title {
+  font-size: 40px;
+  color: #00f5d4;
+  text-shadow: 0 0 20px #00f5d4;
+}
 
-    .rank {
-      color: gold;
-      margin-top: 10px;
-    }
+/* Subtitle */
+.subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  color: gold;
+}
 
-    .btn {
-      margin-top: 20px;
-      padding: 12px 30px;
-      border-radius: 30px;
-      border: none;
-      background: #00f7ff;
-      color: black;
-      font-weight: bold;
-    }
+/* Buttons container */
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
 
-    /* BACKGROUND SECTION */
-    .bg-section {
-      position: relative;
-      margin-top: 40px;
-      padding: 40px 20px;
-    }
+/* Buttons */
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #00f5d4;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .bg-section::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: url('bg.jpg.jpg') center/cover no-repeat; /* FIXED HERE */
-      filter: blur(12px) brightness(0.5);
-      z-index: -2;
-    }
+.btn:hover {
+  transform: scale(1.1);
+}
 
-    .bg-section::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, #000000aa, #000000ee);
-      z-index: -1;
-    }
-
-    .section {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .card {
-      padding: 15px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.4s;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .card.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00f7ff55;
-    }
-
-    .big {
-      font-size: 20px;
-      font-weight: bold;
-      color: #00f7ff;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .full {
-      grid-column: span 2;
-    }
-  </style>
+/* Secondary button */
+.btn.secondary {
+  background: transparent;
+  border: 2px solid #00f5d4;
+  color: #00f5d4;
+}
+</style>
 </head>
 
 <body>
 
-<div class="hero">
-  <h1>STK×Ghost 🔥</h1>
-  <div class="rank">SS Rank • Tactical Player</div>
-  <button class="btn" onclick="enter()">Enter Arena</button>
-</div>
+<div class="container">
+  <h1 class="title">STK×Ghost 🔥</h1>
+  <p class="subtitle">SS Rank • Tactical Player</p>
 
-<div id="content" class="hidden">
+  <div class="buttons">
+    <a href="stats.html">
+      <button class="btn">View Stats</button>
+    </a>
 
-  <div class="bg-section">
-
-    <div class="section">
-      <h2>Core Stats</h2>
-      <div class="grid">
-        <div class="card"><div class="big counter" data-target="6.06">0</div>F/D Ratio</div>
-        <div class="card"><div class="big counter" data-target="146">0</div>Matches</div>
-        <div class="card"><div class="big counter" data-target="25">0</div>Wins</div>
-        <div class="card"><div class="big counter" data-target="885">0</div>Eliminations</div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Performance</h2>
-      <div class="grid">
-        <div class="card"><div class="big counter" data-target="65.1">0</div>% Top 10</div>
-        <div class="card"><div class="big counter" data-target="17.1">0</div>% Win Rate</div>
-        <div class="card"><div class="big counter" data-target="19">0</div>% Headshot</div>
-        <div class="card"><div class="big counter" data-target="1058">0</div>Avg Damage</div>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>Loadout</h2>
-      <div class="grid">
-        <div class="card full"><div class="big">M416 🔫</div>Primary Weapon</div>
-        <div class="card full"><div class="big">Tactical ⚡</div>Playstyle</div>
-      </div>
-    </div>
-
+    <a href="loadout.html">
+      <button class="btn secondary">Loadout</button>
+    </a>
   </div>
-
 </div>
-
-<script>
-function enter() {
-  document.getElementById("content").style.display = "block";
-  animateCounters();
-  reveal();
-  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-}
-
-function animateCounters() {
-  document.querySelectorAll('.counter').forEach(counter => {
-    const target = parseFloat(counter.dataset.target);
-    let count = 0;
-    const step = target / 60;
-
-    function update() {
-      count += step;
-      if (count < target) {
-        counter.innerText = target % 1 ? count.toFixed(2) : Math.floor(count);
-        requestAnimationFrame(update);
-      } else {
-        counter.innerText = target;
-      }
-    }
-    update();
-  });
-}
-
-function reveal() {
-  const cards = document.querySelectorAll('.card');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('show');
-    });
-  }, { threshold: 0.2 });
-
-  cards.forEach(card => observer.observe(card));
-}
-</script>
 
 </body>
 </html>
